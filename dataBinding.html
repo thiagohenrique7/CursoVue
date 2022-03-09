@@ -10,7 +10,9 @@
 <body>
     <div id="app">
         <p>Curso: {{ curso }}</p>
-        <a v-bind:href="docs">VueJS</a>
+        <input type="text" v-bind:src="valor">
+        <br>
+        <a v-bind:href="valor">VueJS</a>
         <p>Instrutor: <span v-text="instrutor"></span></p>
     </div>
     <script type="text/javascript">
@@ -19,8 +21,10 @@
             data:{
                 curso:'VueJS',
                 docs:'https://vuejs.org',
-                instrutor:'Plínio'
+                instrutor:'Plínio',
+                valor:''
             }
+        
         });
 
     </script>
