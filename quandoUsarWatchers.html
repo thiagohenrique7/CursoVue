@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quando Usar Watchers</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>Nome: {{ nomeCompleto }}</p>
+        <button @click="alterarNomes"> Alterar Nome</button>
+    </div>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                nomeCompleto: 'Thiago Nogueira'
+            },
+
+            methods: {
+                alterarNomes: function (event) {
+                    this.nomeCompleto = 'Nogueira Thiago'
+                }
+            },
+            watch: {
+                nomeCompleto: function (novoNomeCompleto, antigoNomeCompleto) {
+                    var vm = this;
+                    setTimeout(function () {
+                        vm.nomeCompleto = 'Nome resetado!' //não consigo usar o this para acessar propriedades da instância VueJS porque a função tem um escopo próprio (sobrescrita), para isso cria-se uma variável
+                    }, 3000);
+                }
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
