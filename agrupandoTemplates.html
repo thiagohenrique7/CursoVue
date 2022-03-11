@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agrupando elementos com template</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+        .separador {
+            list-style-type:none ;
+            border-bottom: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p> Produtos: </p>
+        <ul>
+            <template v-for="produto in produtos">
+                <li>{{ produto.nome }}</li>
+                <li class="separador"></li>
+            </template>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                produtos: [
+                    { id: 1, nome: 'Monitor' },
+                    { id: 2, nome: 'Teclado' },
+                    { id: 3, nome: 'Mouse' },
+                    { id: 4, nome: 'Processador' }
+                ]
+            }
+        });
+    </script>
+</body>
+
+</html>
