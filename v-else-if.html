@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-IF E V-ELSE</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <p v-if = "nota>=9 && mostrar"> Parabéns você tirou nota A </p>
+       <p v-else-if = "nota>=6 && nota<9 && mostrar">Você tirou um B,mas pode melhoras</p>
+       <p v-else-if = "nota<6 && nota>=0 && mostrar">Você precisa melhorar, tirou um C</p>
+       <p v-else-if = "mostrar">Nota não divulgada</p>
+
+        <!-- <p v-if = "nota === 'A'"> Parabéns você tirou nota A </p>
+       <p v-else-if = "nota === 'B'">Você tirou um B,mas pode melhoras</p>
+       <p v-else-if = "nota === 'C'">Você precisa melhorar, tirou um C</p>
+       <p v-else>Nota não divulgada</p> -->
+
+       <input v-model ="nota" placeholder="Digite a nota do aluno">
+       <button @click=" confirmar "> Confirmar </button>
+       <button @click = "reset"> Novo aluno</button>
+
+    </div>
+
+    <script type="text/javascript">
+        new Vue ({
+            el: '#app',
+            data: {
+                nota: '',
+                mostrar: false
+            },
+            methods:{
+                confirmar:function(){
+                    if(this.mostrar == false){
+                        this.mostrar = true
+                    } else {
+                        this.mostrar = this.mostrar
+                    }
+                },
+                reset:function(){
+                    this.mostrar = false
+                    this.nota = ''
+                }
+            }
+        });
+    </script>
+    
+</body>
+</html>

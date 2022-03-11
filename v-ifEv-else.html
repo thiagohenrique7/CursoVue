@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-IF E V-ELSE</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-if="mostrar">Olá VueJS</p>
+        <p v-else>Até logo VueJS!</p>
+        <button @click="mostrar = !mostrar">Alternar</button>
+    </div>
+
+    <script type="text/javascript">
+        new Vue ({
+            el: '#app',
+            data: {
+                mostrar: true
+            }
+        });
+    </script>
+    
+</body>
+</html>
