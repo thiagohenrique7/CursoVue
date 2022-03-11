@@ -15,9 +15,11 @@
         <ul>
             <li v-for="produto in produtos" :key="produto.id"> {{ produto.nome }}</li>
         </ul>
-        <button @click="adicionarProduto"> Adiconar Produto </button>
+        <button @click="adicionarProduto"> Adicionar Produto </button>
         <button @click="produtos = produtos.slice(0,4)"> Substituir array </button>
         <button @click="substituirProduto"> Substituir produto</button>
+        <button @click="cortarArray">Cortar array</button>
+       
     </div>
 
 
@@ -40,7 +42,19 @@
                 },
                 substituirProduto: function(event){
                     var tamanho = this.produtos.length;
-                    var indice = tamanho / 2
+                    var indice = Math.round(tamanho / 2);
+                    var novoProduto = {id: (tamanho +1),nome:  'Produto ' + (tamanho + 1)};
+                    console.log(tamanho,indice);
+                 //   this.produtos[indice] = novoProduto //Não reativo
+                    //Vue.set(this.produtos,indice,novoProduto) //acessando como método estático
+                    //this.$set(this.produtos,indice,novoProduto) //acessando como instância Vue
+                    this.produtos.splice(indice,1,novoProduto )
+
+                },
+                cortarArray:function(event){
+                    this.produtos.length = 2; //NÃO REATIVO
+                    this.produtos.splice(2)
+
                 }
             }
         });

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detectando mudanças em objetos</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>Objetos:</p>
+        <ul>
+            <li v-for="(valor,chave) in produto"> {{chave}}: {{ valor }} </li>
+        </ul>
+        <button @click="adicionarPropriedade">Adicionar Propriedade</button>
+        <button @click="substituirObjeto">Substituir Objeto</button>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                produto: {
+                    id: 2,
+                    nome: 'Teclado',
+                    marca: 'Dell'
+                }
+            },
+            methods:{
+                adicionarPropriedade: function(){
+                    // this.usuario = {nome:'Thiago'};
+                    // this.produto.preco = 100 NÃO REATIVO
+                    // Vue.set(this.produto,'preco',100);
+                    this.$set(this.produto,'preco',100);//INSTÂNCIA
+
+                },
+                substituirObjeto:function(){
+                    // Object.assign(this.produto,{preco:50,cor:preta}) NÃO REATIVO
+                    this.produto=Object.assign({}, this.produto,{preco:50,cor:'preta'})
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
