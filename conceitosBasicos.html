@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Conceitos básicos sobre a instância Vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-if="mostrarMensagem">Título alterado</h1>
+        <p>Título: {{ titulo }} </p>
+        <p>Título lower case: {{ tituloLowerCase }}</p>
+        <input v-model=" novoTitulo">
+        <button @click="alterarTitulo"> Alterar título </button>
+    </div>
+
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#app',
+            data: {
+                titulo: 'Instância Vue',
+                novoTitulo: '',
+                mostrarMensagem: false
+            },
+            methods: {
+                alterarTitulo: function () {
+                    this.titulo = this.novoTitulo;
+                    this.novoTitulo = '';
+                }
+            },
+            computed: {
+                tituloLowerCase: function () {
+                    return this.titulo.toLowerCase().split(' ').join('-');
+                }
+            },
+            watch: {
+                titulo: function (novoTitulo, antigoTitulo) {
+                    console.log('Título alterado: ', 'de"', antigoTitulo, '" para"', novoTitulo, '"');
+                    this.mostrarMensagem = true;
+                    var self = this;
+                    setTimeout(function () {
+                        self.mostrarMensagem = false;
+                    },3000)
+                    
+            }
+        }
+        });
+
+    </script>
+
+</body>
+
+</html>
