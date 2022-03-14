@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usando components</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app1">
+        <h2>Instãncia 01</h2>
+        <meu-component></meu-component>
+        <meu-component></meu-component>
+    </div>
+
+    <div id="app2">
+
+    </div>
+    
+    
+
+    <script type="text/javascript">
+        Vue.component('meu-component',{
+            template:'<h3> Meu primeiro component Vue </h3>'
+        });
+        var vm = new Vue({
+            el: '#app1',
+        });
+
+        var vm2 = new Vue({
+            el:'#app2',
+            template:'<div><h2>Instãncia 02</h2><meu-component></meu-component></div>'
+        });
+
+    </script>
+</body>
+
+</html>

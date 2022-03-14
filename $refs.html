@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usando $refs</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h2 ref="meuTitulo">{{ titulo }}</h2>
+        <button @click="alterarTitulo"> Alterar Título </button>
+    </div>
+
+    <script type="text/javascript">
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                titulo: 'Vue'
+            },
+            methods: {
+                alterarTitulo: function (event) {
+                    this.$refs.meuTitulo.innerText = 'Curso de VueJS';
+                }
+            }
+        });
+
+        console.log(vm);
+
+        setTimeout(function () {
+            vm.titulo = 'Instância Vue';
+        }, 5000);
+
+    </script>
+</body>
+
+</html>
