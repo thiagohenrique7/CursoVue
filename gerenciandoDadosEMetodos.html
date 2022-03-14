@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Como o Vue gerencia os dados e métodos</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>Instância Vue</h2>
+        <p> {{ titulo }}</p>
+        <h3>Propriedades Dinamicas</h3>
+        <p> {{ novaPropriedade }}</p>
+        <p>{{ usuario }}</p>
+    </div>
+
+    <script type="text/javascript"> 
+    var vm = new Vue ({
+        el:'#app',
+        data:{
+            titulo: 'Curso de VueJS',
+            usuario:{}
+        }
+    })
+
+    // vm.titulo
+    //vm.novaPropriedade = ' Nova Propriedade'; //NÃO REATIVO 
+    console.log(vm)
+    setTimeout(function(){
+        vm.novaPropriedade = ' Nova Propriedade';//Dessa forma, essa propriedade depende de uma atualização para ser mostrada
+        // vm.usuario = 'Thiago';
+        vm.$set(vm.usuario,'nome','Thiago Nogueira')//*
+        setTimeout(function(){
+            vm.novaPropriedade = 'Propriedade 2 '//Não é reativa, não gera atualização 
+            Vue.set(vm.usuario,'email','thiagohenriquean@gmail.com')//*
+        },3000)
+        // vm.$set(vm.usuario,'idade','21')
+    }, 3000)
+
+    </script>
+    
+</body>
+</html>
