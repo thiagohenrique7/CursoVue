@@ -8,9 +8,13 @@
 
       <div class="list-group list-group-flush">
 
-        <FilmesListaIten/>
-        <FilmesListaIten/>
-        <FilmesListaIten/>
+        <FilmesListaIten
+        v-for="(filme,index) in filmes"
+        :key="index"
+        :filmeTitulo="filme"/>
+        <!-- <FilmesListaIten :filmeTitulo="'Vingadores: Guerra Infinita'" />
+        <FilmesListaIten filmeTitulo="Homem de Ferro" horario="15:00"/>
+        <FilmesListaIten filmeTitulo="Pantera Negra" horario="19:00"/> -->
 
       </div>
     </div>
@@ -34,6 +38,17 @@ export default {
   components: {
     FilmesListaIten,
     FilmesListaItenInfo
+  },
+  data () {
+    return {
+      filmes: [
+        'Vingadores: Guerra Infinita',
+        'Homem de Ferro',
+        'Pantera Negra',
+        'Deadpool 2'
+
+      ]
+    }
   }
 }
 </script>
