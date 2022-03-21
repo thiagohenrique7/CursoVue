@@ -6,17 +6,30 @@
 
       <h2>Filmes</h2>
 
-      <div class="list-group list-group-flush">
+      <ul class="list-group list-group-flush">
 
         <FilmesListaIten
+        v-for="filme in filmes"
+        :key="filme.id"
+        v-bind="filme"
+       />
+ <!-- :filmeTitulo="filme.titulo"
+        :filmeAno="filme.ano" -->
+
+        <!-- <FilmesListaIten filmeTitulo="Marvel Demolidor"/> -->
+
+        <!-- <FilmesListaIten
         v-for="(filme,index) in filmes"
         :key="index"
-        :filmeTitulo="filme"/>
+        :filmeTitulo="filme"/> -->
+
+          <!-- <FilmesListaIten :filmeTitulo="Vingadores"/> -->
+
         <!-- <FilmesListaIten :filmeTitulo="'Vingadores: Guerra Infinita'" />
         <FilmesListaIten filmeTitulo="Homem de Ferro" horario="15:00"/>
         <FilmesListaIten filmeTitulo="Pantera Negra" horario="19:00"/> -->
 
-      </div>
+      </ul>
     </div>
 
     <!-- coluna 2 -->
@@ -42,11 +55,10 @@ export default {
   data () {
     return {
       filmes: [
-        'Vingadores: Guerra Infinita',
-        'Homem de Ferro',
-        'Pantera Negra',
-        'Deadpool 2'
-
+        { id: 1, titulo: 'Vingadores: Guerra Infinita', ano: 2022 },
+        { id: 2, titulo: 'Homem de Ferro', ano: 2022 },
+        { id: 3, titulo: 'Pantera Negra', ano: 2022 },
+        { id: 4, titulo: 'Deadpool 2', ano: 2022 }
       ]
     }
   }
