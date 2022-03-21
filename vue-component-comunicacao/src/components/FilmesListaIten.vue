@@ -1,20 +1,36 @@
 <template>
   <li class="list-group-item">
-    <span>{{ filmeTituloConcatenado }}</span>
+    <span>{{ filmeTituloConcatenado }} <br> Lançamento: {{ ano }}</span>
     <button class="btn btn-success float-right">Editar</button>
   </li>
 </template>
 
 <script>
 export default {
-  props: ['filmeTitulo'],
+  props: {
+    // filmeTitulo: String
+    titulo: {
+      type: String,
+      required: true // prop obrigatória
+      // default: 'Vingadores'// valor a ser utilizado por padrão ->TIPO PRIMITIVO
+      // default () {
+      //   return 'Vingadores'// ARRAY,OBJETOS E FUNÇÕES
+      // },
+      // validator (filmeTitulo) {
+      //   return filmeTitulo.includes('Marvel') // VALIDAÇÃO
+      // }
+    },
+    ano: {
+      type: Number
+    }
+  },
   computed: {
     filmeTituloConcatenado () {
-      return `Título: ${this.filmeTitulo}`
+      return `Título: ${this.titulo}`
     }
   },
   created () {
-    console.log('Filme titulo: ', this.filmeTitulo)
+    // console.log(typeof this.titulo)
   }
 }
 </script>
