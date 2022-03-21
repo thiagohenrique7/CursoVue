@@ -1,36 +1,56 @@
 <template>
+  <!-- <div>
+    <input type="text" :value="titulo" :placeholder="$attrs.placeholder" />
+  </div> -->
+
   <li class="list-group-item">
-    <span>{{ filmeTituloConcatenado }} <br> Lançamento: {{ ano }}</span>
-    <button class="btn btn-success float-right">Editar</button>
+    <span
+      >{{ filme.titulo }} <br />
+      Lançamento: {{ filme.ano }}</span
+    >
+    <button @click="selecionar" class="btn btn-success float-right">
+      Selecionar
+    </button>
   </li>
 </template>
 
 <script>
 export default {
+  // inheritAttrs: false,
   props: {
     // filmeTitulo: String
-    titulo: {
-      type: String,
-      required: true // prop obrigatória
-      // default: 'Vingadores'// valor a ser utilizado por padrão ->TIPO PRIMITIVO
-      // default () {
-      //   return 'Vingadores'// ARRAY,OBJETOS E FUNÇÕES
-      // },
-      // validator (filmeTitulo) {
-      //   return filmeTitulo.includes('Marvel') // VALIDAÇÃO
-      // }
-    },
-    ano: {
-      type: Number
+    // titulo: {
+    //   type: String,
+    //   required: true // prop obrigatória
+    //   // default: 'Vingadores'// valor a ser utilizado por padrão ->TIPO PRIMITIVO
+    //   // default () {
+    //   //   return 'Vingadores'// ARRAY,OBJETOS E FUNÇÕES
+    //   // },
+    //   // validator (filmeTitulo) {
+    //   //   return filmeTitulo.includes('Marvel') // VALIDAÇÃO
+    //   // }
+    // },
+    // ano: {
+    //   type: Number,
+    //   required: true
+    // }
+    filme: {
+      type: Object,
+      required: true
     }
   },
-  computed: {
-    filmeTituloConcatenado () {
-      return `Título: ${this.titulo}`
+  methods: {
+    selecionar (event) {
+      this.$emit('selecionarFilme', this.filme)
     }
-  },
-  created () {
-    // console.log(typeof this.titulo)
   }
+  // computed: {
+  //   filmeTituloConcatenado () {
+  //     return `Título: ${this.titulo}`
+  //   }
+  // },
+  // created () {
+  //   console.log('Attrs:', this.$attrs)
+  // }
 }
 </script>
