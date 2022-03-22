@@ -15,6 +15,8 @@
 </template>
 
 <script>
+
+// import { eventBus } from './../main'
 export default {
   // inheritAttrs: false,
   props: {
@@ -41,6 +43,8 @@ export default {
   },
   methods: {
     selecionar (event) {
+      // eventBus.$emit('selecionarFilme', this.filme) // emitindo evento por meio do eventBus e não mais pelo this
+      // eventBus.selecionarFilme(this.filme)
       this.$emit('selecionarFilme', this.filme)
     }
   }
