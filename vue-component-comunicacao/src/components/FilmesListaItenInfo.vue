@@ -5,7 +5,7 @@
     <div class="card" v-if="filmeSelecionadoInfo">
       <div class="card-body">
         <h5 class="card-title">{{ filmeSelecionadoInfo.titulo }} || {{ filmeSelecionadoInfo.ano }}</h5>
-        <button class="btn btn-danger float-right">Editar</button>
+        <button @click="editar()" class="btn btn-danger float-right">Editar</button>
       </div>
     </div>
     <p v-else> Nenhum filme selecionado </p>
@@ -26,6 +26,11 @@ export default {
   //   })
   props: {
     filmeSelecionadoInfo: Object
+  },
+  methods: {
+    editar (event) {
+      this.$emit('editarFilme', this.filmeSelecionadoInfo)
+    }
   }
 }
 //  }
