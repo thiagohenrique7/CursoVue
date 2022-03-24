@@ -13,7 +13,8 @@
         <div class="col-sm-6">
           <h3>Preencha abaixo</h3>
 
-          <form>
+          <form @submit.prevent="enviar" @reset="resetar" > <!-- action="" -->
+
             <div class="form-group">
               <label>Nome:</label>
               <input
@@ -72,8 +73,16 @@
 
             <div class="form-group">
               <label>Ocupação:</label>
-              <select class="form-control" placeholder="Seu email">
-                <option>Selecione uma opção...</option>
+              <select class="form-control" v-model="desenvolvedor.ocupacao">
+                <option value="" disabled>Selecione uma opção...</option>
+                <option
+                  v-for="(ocupacao, indice) in ocupacoes"
+                  :key="indice"
+                  :value="ocupacao"
+                >
+                  <!-- :selected="ocupacao ==='Desenvolvedor Back End'" -->
+                  {{ ocupacao }}
+                </option>
               </select>
             </div>
 
@@ -125,10 +134,24 @@
               <label>Resumo de perfil:</label>
               <textarea
                 class="form-control"
-                placeholder="Conte-nos um pouco sobre você..."
+                :placeholder="desenvolvedor.biografia"
                 v-model="desenvolvedor.biografia"
               >
               </textarea>
+            </div>
+
+            <div class="form-group">
+              <AppRange
+              label="Salario pretendido: "
+              v-model.number="desenvolvedor.salario"
+              min="800"
+              max="15000"
+              step="50"
+              :inputClasses="[{'form-control-range': true}, 'minha-classe']"
+              />
+              <!-- inputClasses="form-control-range" -->
+              
+              
             </div>
 
             <div class="form-group">
@@ -146,8 +169,13 @@
               </div>
             </div>
 
-            <button class="btn btn-secondary">Resetar</button>
-            <button class="btn btn-success">Enviar</button>
+            <button class="btn btn-secondary" type="reset" >Resetar</button>
+            <!-- <button class="btn btn-success" type="button" @click="enviar">
+              Enviar
+            </button> -->
+             <button class="btn btn-success" type="submit">
+              Enviar
+            </button>
           </form>
         </div>
 
@@ -171,11 +199,18 @@
               <li class="list-group-item">
                 <strong>Gênero:</strong> {{ desenvolvedor.genero }}
               </li>
-              <li class="list-group-item"><strong>Ocupação:</strong></li>
+              <li class="list-group-item">
+                <strong>Ocupação:</strong>{{ desenvolvedor.ocupacao }}
+              </li>
               <li class="list-group-item">
                 <strong>Tecnologias:</strong>
                 <ul>
-                  <li v-for="(tecnologia, indice) in desenvolvedor.tecnologias" :key="indice">{{ tecnologia }}</li>
+                  <li
+                    v-for="(tecnologia, indice) in desenvolvedor.tecnologias"
+                    :key="indice"
+                  >
+                    {{ tecnologia }}
+                  </li>
                 </ul>
               </li>
               <li class="list-group-item">
@@ -190,12 +225,17 @@
                 {{ desenvolvedor.notificacoes }}
                 <!-- desenvolvedor.notificacoes?"Sim":"Não"  -->
               </li>
+              <li class="list-group-item">
+                <strong>Salário pretendido:</strong>
+                {{ desenvolvedor.salario }}
+                <!-- desenvolvedor.notificacoes?"Sim":"Não"  -->
+              </li>
             </ul>
 
             <div class="card-header">Model</div>
 
             <div class="card-body">
-              <pre><code>{{ {desenvolvedor} }}</code></pre>
+              <pre><code>{{ desenvolvedor }}</code></pre>
             </div>
           </div>
         </div>
@@ -205,10 +245,18 @@
 </template>
 
 <script>
+import AppRange from './components/AppRange.vue'
 export default {
+
+  components:{
+    AppRange
+  },
   data() {
     return {
       desenvolvedor: {
+
+      },
+      valoresPadroes: {
         nome: "",
         email: "",
         idade: 0,
@@ -216,9 +264,30 @@ export default {
         genero: "Masculino",
         tecnologias: [],
         notificacoes: "Não",
+        ocupacao: "",
+        salario: '1000'
       },
+      ocupacoes: [
+        "Desenvolvedor Front End (Web)",
+        "Desenvolvedor Front End (Mobile)",
+        "Desenvolvedor Front End (Web e Mobile)",
+        "Desenvolvedor Back End",
+        "Desenvolvedor Full Stack",
+      ],
     };
   },
+  methods: {
+    enviar(){
+      const formularioEnviado = Object.assign({}, this.desenvolvedor)
+      console.log('Formulário Enviado', formularioEnviado)
+    },
+    resetar(){
+      this.desenvolvedor = Object.assign({}, this.valoresPadroes)
+    }
+  },
+  created(){
+    this.resetar()
+  }
 };
 </script>
 
