@@ -177,6 +177,24 @@
               Enviar
             </button>
           </form>
+
+          <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              color="black"
+              dark
+              class="ma-2"
+              @click="setShowFilter(true)"
+              v-bind="attrs"
+              v-on="on"
+              small
+            >
+              <v-icon color="white">mdi-filter</v-icon>
+            </v-btn>
+          </template>
+          <span>Filtro</span>
+        </v-tooltip>
+        
         </div>
 
         <!-- saida -->
@@ -279,6 +297,24 @@ export default {
   methods: {
     enviar(){
       const formularioEnviado = Object.assign({}, this.desenvolvedor)
+      console.log('Formulário Enviado', formularioEnviado)
+    },
+    resetar(){
+      this.desenvolvedor = Object.assign({}, this.valoresPadroes)
+    }
+  },
+  created(){
+    this.resetar()
+  }
+};
+</script>
+
+
+<style scoped>
+.btn {
+  margin-right: 5px;
+}
+</style>ject.assign({}, this.desenvolvedor)
       console.log('Formulário Enviado', formularioEnviado)
     },
     resetar(){
