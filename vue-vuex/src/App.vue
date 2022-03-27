@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-4">Vuex</h1>
@@ -8,15 +9,30 @@
     </div>
 
     <div class="container">
-      <Contador/>
+
+      <div class="row">
+        <div class="col-sm-9 border-right">
+          <TarefasLista />
+        </div>
+        <div class="col-sm-3">
+          <Contador />
+        </div>
+      </div>
+
     </div>
+
   </div>
 </template>
+
 <script>
+
 import Contador from '@/components/Contador.vue'
+import TarefasLista from '@/components/TarefasLista.vue'
+
 export default {
   components: {
-    Contador
+    Contador,
+    TarefasLista
   }
 }
 </script>
