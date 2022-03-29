@@ -1,14 +1,14 @@
 <template>
   <div>
-    <h2 class="font-weight-light">Contador: {{ contador }}</h2>
-    <h4 class="font-weight-light">Alias: {{ contadorAlias }}</h4>
+    <h2 class="font-weight-light">Contador: {{ getContador }}</h2>
+    <h4 class="font-weight-light">Alias: {{ getContador }}</h4>
     <h4 class="font-weight-light">Multiplicado: {{ contadorMultiplciado }}</h4>
     <button class="btn btn-lg btn-danger mr-1" @click="decrementar">-</button>
     <button class="btn btn-lg btn-success" @click="incrementar">+</button>
   </div>
 </template>
 <script>
-import { mapMutations, mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 export default {
   name: 'contador-click',
   data () {
@@ -17,10 +17,11 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-    // contador: state => state.contador
-      contador: 'contador',
-      contadorAlias: 'contador',
+    ...mapGetters('contador', ['getContador']),
+    ...mapState('contador', {
+      contador: state => state.contador,
+      // contador: 'contador',
+      contadorAlias: state => state.contador,
       contadorMultiplciado (state) {
         return state.contador * this.contadorLocal
       }
@@ -34,7 +35,15 @@ export default {
   //   return this.$store.state.contador
   // }
 
-  methods: mapMutations(['incrementar', 'decrementar'])
+  methods: {
+    // ...mapMutations(['incrementar']),
+    decrementar () {
+      this.$store.state.contador.contador--
+    },
+    incrementar () {
+      this.$store.state.contador.contador++
+    }
+
   //  {
   //   decrementar () {
   //     this.$store.state.contador--
@@ -42,6 +51,6 @@ export default {
   // incrementar () {
   //   this.$store.state.contador++
   // }
+  }
 }
-
 </script>

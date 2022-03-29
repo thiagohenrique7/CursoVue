@@ -46,9 +46,12 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
+// import { createNamespacedHelpers } from 'vuex'
 import TarefaSalvar from './TarefaSalvar.vue'
 import TarefasListaIten from './TarefasListaIten.vue'
+
+// const { mapActions, mapGetters, mapState } = createNamespacedHelpers('tarefas')
 
 export default {
   components: {
@@ -62,22 +65,24 @@ export default {
     }
   },
   computed: {
-    ...mapState(['tarefas']),
-    ...mapGetters(['tarefasAFazer',
+    ...mapState('tarefas', ['tarefas']),
+    ...mapGetters('tarefas', ['tarefasAFazer',
       'tarefasConcluidas',
-      'totalDeTarefasConcluidas'])
+      'totalDeTarefasConcluidas',
+      'boasVindas'
+    ])
     // ...mapState({
     //   tarefas: 'tarefas'
     // })
   },
   created () {
-    setTimeout(() => {
-      this.$store.dispatch('listarTarefas', {
-        tarefas: [{ id: 1, titulo: 'Aprender Vue', concluido: true },
-          { id: 2, titulo: 'Aprender Vue Router', concluido: true },
-          { id: 3, titulo: 'Aprender Vuex', concluido: false }]
-      })
+    setTimeout(async () => {
+      console.log('Usuario atual: ', this.boasVindas)
+      await this.listarTarefas()
+      console.log('Actions executadas!')
+      console.log('Usuario atual: ', this.boasVindas)
     }, 1000)
+    console.log('Boas vindas: ', this.boasVindas)
   },
   /* this.$store.commit('listarTarefas', {
       //// type: 'listarTarefas',
@@ -91,6 +96,13 @@ export default {
   //     { id: 3, titulo: 'Aprender Vuex', concluido: false }]
   // })
   methods: {
+    // ...mapActions(['listarTarefas'])
+    ...mapActions('tarefas', {
+      carregarTarefas: 'listarTarefas',
+      listarTarefas: (dispatch, payload, options) => {
+        return dispatch('listarTarefas', payload, options)
+      }
+    }),
     exibirFormularioCriarTarefa (event) {
       if (this.tarefaSelecionada) {
         this.tarefaSelecionada = undefined

@@ -35,6 +35,7 @@
 </template>
 
 <script>
+// import { mapGetters } from 'vuex'
 export default {
   props: {
     tarefa: {
@@ -43,6 +44,7 @@ export default {
     }
   },
   computed: {
+    // ...mapGetters('tarefas', ['buscarTarefaPorId']),
     classeColuna () {
       return this.tarefa ? 'col-sm-10' : 'col-sm-12'
     },
@@ -54,7 +56,7 @@ export default {
   },
   created () {
     if (this.tarefa) {
-      console.log('Tarefa por id: ', this.$store.getters.buscarTarefaPorId(this.tarefa.id))
+      console.log('Tarefa por id: ', this.$store.getters['tarefas/buscarTarefaPorId'](this.tarefa.id))
     }
   },
   methods: {
