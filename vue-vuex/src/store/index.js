@@ -28,6 +28,13 @@ export default createStore({
     }
   },
   actions: {
+    listarTarefas: ({ commit }, payload) => {
+      console.log('action chamada')
+      setTimeout(() => {
+        console.log('action executada')
+        commit('listarTarefas', payload)
+      }, 3000)
+    }
   },
   modules: {
   }
