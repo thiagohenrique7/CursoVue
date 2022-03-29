@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import TarefaSalvar from './TarefaSalvar.vue'
 import TarefasListaIten from './TarefasListaIten.vue'
 
@@ -71,29 +71,26 @@ export default {
     // })
   },
   created () {
-    /* this.$store.commit('listarTarefas', {
-      //// type: 'listarTarefas',
-      tarefas: [{ id: 1, titulo: 'Aprender Vue', concluido: true },
-        { id: 2, titulo: 'Aprender Vue Router', concluido: true },
-        { id: 3, titulo: 'Aprender Vuex', concluido: false }]
-    }) */
     setTimeout(() => {
-      this.listarTarefas({
+      this.$store.dispatch('listarTarefas', {
         tarefas: [{ id: 1, titulo: 'Aprender Vue', concluido: true },
           { id: 2, titulo: 'Aprender Vue Router', concluido: true },
           { id: 3, titulo: 'Aprender Vuex', concluido: false }]
       })
     }, 1000)
   },
+  /* this.$store.commit('listarTarefas', {
+      //// type: 'listarTarefas',
+      tarefas: [{ id: 1, titulo: 'Aprender Vue', concluido: true },
+        { id: 2, titulo: 'Aprender Vue Router', concluido: true },
+        { id: 3, titulo: 'Aprender Vuex', concluido: false }]
+    }) */
+  // this.listarTarefas({
+  //   tarefas: [{ id: 1, titulo: 'Aprender Vue', concluidotrue },
+  //     { id: 2, titulo: 'Aprender Vue Router', concluidotrue },
+  //     { id: 3, titulo: 'Aprender Vuex', concluido: false }]
+  // })
   methods: {
-    ...mapMutations(['listarTarefas']),
-    // ...mapMutations({
-    //   carregarTarefas: 'listarTarefas',
-    //   listarTarefas: (commit, payload, options) => {
-    //     commit('listarTarefas', payload, options)
-    //   }
-    // }),
-
     exibirFormularioCriarTarefa (event) {
       if (this.tarefaSelecionada) {
         this.tarefaSelecionada = undefined
@@ -111,4 +108,12 @@ export default {
     }
   }
 }
+// ...mapMutations(['listarTarefas']),
+// ...mapMutations({
+//   carregarTarefas: 'listarTarefas',
+//   listarTarefas: (commit, payload, options) => {
+//     commit('listarTarefas', payload, options)
+//   }
+// }),
+
 </script>
