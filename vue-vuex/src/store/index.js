@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
-import contador from '@/store/modules/contador'
-import tarefas from '@/store/modules/tarefas'
+import contador from '@/resources/contador/_$store/index'
+import tarefas from '@/resources/tarefas/_$store/index'
 
 const state = {
   usuario: 'Thiago'
