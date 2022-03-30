@@ -1,16 +1,43 @@
 <template>
   <div id="app">
-    
-    <div class="jumbotron">
-      <h1 class="display-4">Vue Router</h1>
-      <p class="lead">Adicionando rotas a Single Page Applications no Vue.</p>
-    </div>
-
-    <div class="container">
-
-      <h3 class="font-weight-light">Contatos</h3>
-
-    </div>
-    
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </nav>
+    <router-link
+     to="/" 
+     class="btn btn-info mb-2 mr-2"
+     exact
+     >
+      Home</router-link>
+    <router-link 
+    :to="{ path: '/contatos'}" 
+    class="btn btn-info mb-2 mr-2"
+    >
+    Contatos</router-link>
+    <router-view/>
   </div>
 </template>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
+}
+</style>
