@@ -50,6 +50,8 @@ import { mapActions, mapState, mapGetters } from 'vuex'
 // import { createNamespacedHelpers } from 'vuex'
 import TarefaSalvar from './TarefaSalvar.vue'
 import TarefasListaIten from './TarefasListaIten.vue'
+// import tarefasModule from './../_$store/index'
+import register from './../_store/register.js'
 
 // const { mapActions, mapGetters, mapState } = createNamespacedHelpers('tarefas')
 
@@ -76,6 +78,7 @@ export default {
     // })
   },
   created () {
+    register(this.$store)
     setTimeout(async () => {
       console.log('Usuario atual: ', this.boasVindas)
       await this.listarTarefas()
